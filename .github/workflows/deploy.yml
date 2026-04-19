@@ -80,4 +80,4 @@ jobs:
             docker pull 298572504484.dkr.ecr.$AWS_REGION.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
             docker stop generador-container || true
             docker rm generador-container || true
-            docker run -d --name generador-container -p 8000:8000 298572504484.dkr.ecr.$AWS_REGION.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
+            docker run -d --name generador-container -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN -e AWS_DEFAULT_REGION=$AWS_REGION -e AWS_REGION=$AWS_REGION -p 8000:8000 298572504484.dkr.ecr.$AWS_REGION.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
